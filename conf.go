@@ -218,7 +218,7 @@ func (c *ConfigFile) GetValue(section, key string) (string, error) {
 }
 
 // Bool returns bool type value.
-func (c *ConfigFile) Bool(section, key string) (bool, error) {
+func (c *ConfigFile) GetBool(section, key string) (bool, error) {
 	value, err := c.GetValue(section, key)
 	if err != nil {
 		return false, err
@@ -227,7 +227,7 @@ func (c *ConfigFile) Bool(section, key string) (bool, error) {
 }
 
 // Float64 returns float64 type value.
-func (c *ConfigFile) Float64(section, key string) (float64, error) {
+func (c *ConfigFile) GetFloat64(section, key string) (float64, error) {
 	value, err := c.GetValue(section, key)
 	if err != nil {
 		return 0.0, err
@@ -236,7 +236,7 @@ func (c *ConfigFile) Float64(section, key string) (float64, error) {
 }
 
 // Int returns int type value.
-func (c *ConfigFile) Int(section, key string) (int, error) {
+func (c *ConfigFile) GetInt(section, key string) (int, error) {
 	value, err := c.GetValue(section, key)
 	if err != nil {
 		return 0, err
@@ -245,7 +245,7 @@ func (c *ConfigFile) Int(section, key string) (int, error) {
 }
 
 // Int64 returns int64 type value.
-func (c *ConfigFile) Int64(section, key string) (int64, error) {
+func (c *ConfigFile) GetInt64(section, key string) (int64, error) {
 	value, err := c.GetValue(section, key)
 	if err != nil {
 		return 0, err
@@ -309,7 +309,7 @@ func (c *ConfigFile) MustValueArray(section, key, delim string) []string {
 // MustBool always returns value without error,
 // it returns false if error occurs.
 func (c *ConfigFile) MustBool(section, key string, defaultVal ...bool) bool {
-	val, err := c.Bool(section, key)
+	val, err := c.GetBool(section, key)
 	if len(defaultVal) > 0 && err != nil {
 		return defaultVal[0]
 	}
@@ -319,7 +319,7 @@ func (c *ConfigFile) MustBool(section, key string, defaultVal ...bool) bool {
 // MustFloat64 always returns value without error,
 // it returns 0.0 if error occurs.
 func (c *ConfigFile) MustFloat64(section, key string, defaultVal ...float64) float64 {
-	value, err := c.Float64(section, key)
+	value, err := c.GetFloat64(section, key)
 	if len(defaultVal) > 0 && err != nil {
 		return defaultVal[0]
 	}
@@ -329,7 +329,7 @@ func (c *ConfigFile) MustFloat64(section, key string, defaultVal ...float64) flo
 // MustInt always returns value without error,
 // it returns 0 if error occurs.
 func (c *ConfigFile) MustInt(section, key string, defaultVal ...int) int {
-	value, err := c.Int(section, key)
+	value, err := c.GetInt(section, key)
 	if len(defaultVal) > 0 && err != nil {
 		return defaultVal[0]
 	}
@@ -339,7 +339,7 @@ func (c *ConfigFile) MustInt(section, key string, defaultVal ...int) int {
 // MustInt64 always returns value without error,
 // it returns 0 if error occurs.
 func (c *ConfigFile) MustInt64(section, key string, defaultVal ...int64) int64 {
-	value, err := c.Int64(section, key)
+	value, err := c.GetInt64(section, key)
 	if len(defaultVal) > 0 && err != nil {
 		return defaultVal[0]
 	}
